@@ -1,11 +1,18 @@
 from django.shortcuts import render
 from .models import *
+from .forms import *
 
 # Create your views here.
 def article(request):
 	queryset_list = Post.objects.all()
+	form = PostForm(request.POST or None, request.FILES or None)
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.save()
+
 
 	context = {
 		"object_list": queryset_list,
+		"form": form
 		}
 	return render(request, "articles.html", context)
