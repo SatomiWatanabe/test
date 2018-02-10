@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    
+    <title>Penstagram</title>
+
+
+      <style>
+
+      </style>
+
+
+
+  </head>
+
+  <body>
+
+   <h2>Penstagram</h2>
+
+    {% if not user.is_authenticated %}
+    <a href="http://127.0.0.1:8000/login/">Login</a>
+    {% endif %}
+    {% if user.is_authenticated %}
+    <a href="http://127.0.0.1:8000/logout/">Logout</a>
+
+    <form action="" method="POST" enctype='multipart/form-data'>
+      {% csrf_token %}
+      {{ form }}
+      <input type="submit" value="送信"/>
+    </form>
+    {% endif %}
+
+    {% for obj in object_list %}
+      <p>
+      {% if obj.name %}{{ obj.name }}{% endif %}<br>
+      {% if obj.message %}{{ obj.message }}{% endif %}<br>
+      {% if obj.image %}<img  src="{{ obj.image.url }}" width="200" height="150" />{% endif %}<br>
+      {% if obj.time %}{{ obj.time }}{% endif %}<br>
+      </p>                   
+    {% endfor %} 
+    
+  </body>
+</html>

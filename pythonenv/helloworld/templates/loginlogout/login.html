@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Penstagram</title>
+
+
+      <style>
+
+      </style>
+
+
+
+  </head>
+
+  <body>
+
+   <div align="center">
+   <h2>Penstagram ログイン</h2>
+
+   <form method='post' action='{% url 'django.contrib.auth.views.login' %}'>
+      {% csrf_token %}
+      <div align="center">
+      <table>
+      <tr>
+          <td>{{ form.username.label_tag }}</td>
+          <td>{{ form.username }}</td>
+      </tr>
+      <tr>
+          <td>{{ form.password.label_tag }}</td>
+          <td>{{ form.password }}</td>
+      </tr>
+      </table>
+      </div>
+      <br>
+      <div align="right">
+      <button type="submit" class="btn btn-primary">
+      <span class="submit-text">ログイン</span>
+      </button>
+      </div>
+      <input type='hidden' name='next' value='{{ next }}' />
+   </form> 
+    
+  </body>
+</html>
